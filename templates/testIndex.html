@@ -55,13 +55,57 @@
             };
 
             service = new google.maps.places.PlacesService(map);
-            service.textSearch(request, post_callback);
+            service.textSearch(request, callback);
         }
-        function getDistance() {
-            var current_location = getCurrentLocation();
-            
 
+        function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    if(!places.includes(results[i])){
+                        var address = results[i].formatted_address;
+                        var current_location = getCurrentLocation();
+                        var location = results[i].geometry.location;
+                        var distance = sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
+                                            + (current_location.lat-location.lat) * (current_location.lat-location.lat))
+                        var restaurant = results[i].name;
+                        var price_level = results[i].price_level;
+                        var ratings = results[i].rating;
+                    };
+            
+                }
+            }
         }
+
+        // function post_callback(results, status) {
+        //     if (status == google.maps.places.PlacesServiceStatus.OK) {
+        //     // POST
+        //     fetch('http://127.0.0.1:5000/hello', {
+
+        //         // Declare what type of data we're sending
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+
+        //         // Specify the method
+        //         method: 'POST',
+
+        //         // A JSON payload
+        //         body: JSON.stringify(results)
+        //     })
+        //         .then(function (response) {
+        //             return response.text();
+        //         })
+        //         .then(function (text) {
+
+        //             console.log('POST response: ');
+
+        //             // Should be 'OK' if everything was successful
+        //             console.log(text);
+        //         });
+
+        //     }
+        // }
+
         function post_callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
             // POST
@@ -92,34 +136,36 @@
             }
         }
 
-       
-    function get_request_string(results) {
-           
-        // GET is the default method, so we don't need to set it
-        fetch('http://127.0.0.1:5000/hello')
-            .then(function (response) {
-                return response.text();
-            })
-            .then(function (text) {
+        function get_request_string(results) {
+    
+            // GET is the default method, so we don't need to set it
+            fetch('http://127.0.0.1:5000/hello')
+                .then(function (response) {
+                    return response.text();
+                })
+                .then(function (text) {
 
-                // Print the greeting as text
-                console.log('GET response text:');
-                console.log(text);
-            });
-    function get_request_json(results) {
-        // Send the same request
-        fetch('http://127.0.0.1:5000/hello')
-            .then(function (response) {
+                    // Print the greeting as text
+                    console.log('GET response text:');
+                    console.log(text);
+                });
+        }
 
-                // But parse it as JSON this time
-                return response.json();
-            })
-            .then(function (json) {
+        function get_request_json(results) {
+            // Send the same request
+            fetch('http://127.0.0.1:5000/hello')
+                .then(function (response) {
 
-                // Do anything with it!
-                console.log('GET response as JSON:');
-                console.log(json);
-            });
+                    // But parse it as JSON this time
+                    return response.json();
+                })
+                .then(function (json) {
+
+                    // Do anything with it!
+                    console.log('GET response as JSON:');
+                    console.log(json);
+                });
+        }
     </script>
   </head>
   <body>
