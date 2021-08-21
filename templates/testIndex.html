@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    </style>
+    <script text/javascript>
+        let map;
+
+        function initMap() {
+                var nothardcoded = new google.maps.LatLng(43.2609,-74.9192);
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: nothardcoded,
+                    zoom: 12
+                });
+
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    map.setCenter(new google.maps.LatLng(pos.lat,pos.lng));
+                    search("Ribeye steak", map.center);
+                });
+
+
+                function search(loca, currentLoca){
+                  request = {
+                    location: currentLoca,
+                    radius: 5000,
+                    query: loca
+                  };
+
+                  service = new google.maps.places.PlacesService(map);
+                  service.textSearch(request, callback);
+                }
+
+                function callback(results, status) {
+                  if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+                // POST
+                fetch('http://127.0.0.1:5000/hello', {
+
+                    // Declare what type of data we're sending
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    // Specify the method
+                    method: 'POST',
+
+                    // A JSON payload
+                    body: results
+                })
+                    .then(function (response) {
+                        return response.text();
+                    })
+                    .then(function (text) {
+
+                        console.log('POST response: ');
+
+                        // Should be 'OK' if everything was successful
+                        console.log(text);
+                    });
+
+                  }
+                }
+        }
+
+                // GET is the default method, so we don't need to set it
+    fetch('http://127.0.0.1:5000/hello')
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (text) {
+
+            // Print the greeting as text
+            console.log('GET response text:');
+            console.log(text);
+        });
+
+    // Send the same request
+    fetch('http://127.0.0.1:5000/hello')
+        .then(function (response) {
+
+            // But parse it as JSON this time
+            return response.json();
+        })
+        .then(function (json) {
+
+            // Do anything with it!
+            console.log('GET response as JSON:');
+            console.log(json);
+        });
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OUVOA30j_zhlh0JLvkbp-PQJslXnqUA&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
