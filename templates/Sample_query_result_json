@@ -1,0 +1,37 @@
+{
+    'business_status': 'OPERATIONAL', 
+    'formatted_address': '409 Oriskany Blvd, Whitesboro, NY 13492, United States', 
+    'geometry': {
+        'location': {
+            'lat': 43.1356533, 
+            'lng': -75.3046839
+        }, 
+        'viewport': {
+            'south': 43.13425937010728, 
+            'west': -75.30591957989272, 
+            'north': 43.13695902989272, 
+            'east': -75.30321992010727
+            }
+        }, 
+    'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 
+    'icon_background_color': '#FF9E67',
+    'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 
+    'name': '69 Steakhouse', 
+    'opening_hours': {
+        'open_now': True
+    }, 
+    'photos': [
+        {
+            'height': 4032, 
+            'html_attributions': ['<a href="https://maps.google.com/maps/contrib/105175876333021200932%22%3EAmanda G</a>'], 'width': 3024}], 
+            'place_id': 'ChIJub2iuHpA2YkRvNZvPYbLi2w', 
+            'plus_code': {
+                'compound_code': '4MPW+74 Whitesboro, New York, United States', 
+                'global_code': '87M64MPW+74'
+            }, 
+            'price_level': 2, 
+            'rating': 4.3, 
+            'reference': 'ChIJub2iuHpA2YkRvNZvPYbLi2w', 
+            'types': ['bar', 'restaurant', 'food', 'point_of_interest', 'establishment'], 
+            'user_ratings_total': 331, 'html_attributions': []
+}
