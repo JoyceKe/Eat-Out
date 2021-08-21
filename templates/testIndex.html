@@ -22,6 +22,7 @@
         let map;
         var query = "Ribeye steak";
         var searchRadius = 5000;
+        var location_results;
 
         function initMap() {
             var nothardcoded = new google.maps.LatLng(43.2609,-74.9192);
@@ -31,17 +32,18 @@
                 zoom: 12
             });
 
-            setCurrentLocation();
+            var pos = getCurrentLocation();
+            map.setCenter(new google.maps.LatLng(pos.lat,pos.lng));
             search(query, map.center);
         }
 
-        function setCurrentLocation() {
+        function getCurrentLocation() {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-                map.setCenter(new google.maps.LatLng(pos.lat,pos.lng));
+                return pos;               
             });
         }
 
@@ -53,12 +55,15 @@
             };
 
             service = new google.maps.places.PlacesService(map);
-            service.textSearch(request, callback);
+            service.textSearch(request, post_callback);
         }
+        function getDistance() {
+            var current_location = getCurrentLocation();
+            
 
-        function callback(results, status) {
+        }
+        function post_callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-
             // POST
             fetch('http://127.0.0.1:5000/hello', {
 
@@ -87,7 +92,10 @@
             }
         }
 
-                // GET is the default method, so we don't need to set it
+       
+    function get_request_string(results) {
+           
+        // GET is the default method, so we don't need to set it
         fetch('http://127.0.0.1:5000/hello')
             .then(function (response) {
                 return response.text();
@@ -98,7 +106,7 @@
                 console.log('GET response text:');
                 console.log(text);
             });
-
+    function get_request_json(results) {
         // Send the same request
         fetch('http://127.0.0.1:5000/hello')
             .then(function (response) {
