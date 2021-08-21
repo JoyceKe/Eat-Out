@@ -65,7 +65,7 @@
                     method: 'POST',
 
                     // A JSON payload
-                    body: results
+                    body: JSON.stringify(results)
                 })
                     .then(function (response) {
                         return response.text();
@@ -114,7 +114,7 @@
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OUVOA30j_zhlh0JLvkbp-PQJslXnqUA&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OUVOA30j_zhlh0JLvkbp-PQJslXnqUA&callback=initMap&libraries=places&v=weekly"
       async
     ></script>
   </body>

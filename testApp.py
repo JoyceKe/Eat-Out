@@ -7,7 +7,7 @@ def hello():
     # POST request
     if request.method == 'POST':
         print('Incoming..')
-        print(request.get_json())  # parse as JSON
+        print(request.get_json()[0])  # parse as JSON
         return 'OK', 200
 
     # GET request
