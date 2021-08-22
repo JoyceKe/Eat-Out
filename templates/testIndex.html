@@ -73,6 +73,8 @@
                     var current_location = getCurrentLocation();
                     var address = results[i].formatted_address;
                     var location = results[i].geometry.location;
+                    var lat = location.lat;
+                    var lng = location.lng;
                     var distance = Math.sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
                                         + (current_location.lat - location.lat) * (current_location.lat - location.lat))
                     var restaurant = results[i].name;
