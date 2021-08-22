@@ -32,7 +32,7 @@
                 zoom: 12
             });
 
-            var pos = getCurrentLocation();
+            setCurrentLocation(getCurrentLocation);
             search(query, map.center);
         }
 
@@ -42,9 +42,11 @@
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-                map.setCenter(new google.maps.LatLng(pos.lat,pos.lng));
                 return pos;               
             });
+        }
+        function setCurrentLocation(pos) {
+            map.setCenter(new google.maps.LatLng(pos.lat,pos.lng));
         }
 
         function search(loca, currentLoca){
@@ -65,7 +67,7 @@
                         var address = results[i].formatted_address;
                         var current_location = getCurrentLocation();
                         var location = results[i].geometry.location;
-                        var distance = sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
+                        var distance = Math.sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
                                             + (current_location.lat-location.lat) * (current_location.lat-location.lat))
                         var restaurant = results[i].name;
                         var price_level = results[i].price_level;
