@@ -32,7 +32,7 @@
                 zoom: 12
             });
 
-            setCurrentLocation(getCurrentLocation);
+            setCurrentLocation(getCurrentLocation());
             search(query, map.center);
         }
 
@@ -45,7 +45,7 @@
                 return pos;               
             });
         }
-        
+
         function setCurrentLocation(pos) {
             map.setCenter(new google.maps.LatLng(pos.lat,pos.lng));
         }
