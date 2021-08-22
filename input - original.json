@@ -1,0 +1,179 @@
+[
+    "Ribeye steak",
+    {
+        "restaurantName": "69 Steakhouse",
+        "address": "409 Oriskany Blvd, Whitesboro, NY 13492, United States",
+        "distance": 4.223386855283022,
+        "lat": 43.1356533,
+        "lng": -75.3046839,
+        "rating": 4.3,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Delmonico’s Italian Steakhouse",
+        "address": "147 N Genesee St, Utica, NY 13502, United States",
+        "distance": 4.3117613781307895,
+        "lat": 43.1093155,
+        "lng": -75.2196871,
+        "rating": 4.5,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Texas Roadhouse",
+        "address": "4511 Commercial Dr, New Hartford, NY 13413, United States",
+        "distance": 4.217682578844316,
+        "lat": 43.084637,
+        "lng": -75.32021999999999,
+        "rating": 4.6,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Stone's Steakhouse",
+        "address": "3220 Erie Blvd E, Syracuse, NY 13214, United States",
+        "distance": 3.4897848641384845,
+        "lat": 43.0510808,
+        "lng": -76.0734221,
+        "rating": 4.2,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Pizza Classic",
+        "address": "180 Genesee St, Utica, NY 13502, United States",
+        "distance": 4.302077524713526,
+        "lat": 43.10178,
+        "lng": -75.23095599999999,
+        "rating": 4.2,
+        "priceLvl": 1
+    },
+    {
+        "restaurantName": "99 Restaurants",
+        "address": "8675 Clinton St, New Hartford, NY 13413, United States",
+        "distance": 4.22301646524284,
+        "lat": 43.0905005,
+        "lng": -75.3136329,
+        "rating": 4.4,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Kitlas Restaurant",
+        "address": "2242 Broad St, Frankfort, NY 13340, United States",
+        "distance": 4.354830539669803,
+        "lat": 43.091902,
+        "lng": -75.179136,
+        "rating": 4.2
+    },
+    {
+        "restaurantName": "Sloan's New York Grill",
+        "address": "337 Chestnut St, Oneonta, NY 13820, United States",
+        "distance": 4.605188180998281,
+        "lat": 42.4527643,
+        "lng": -75.0865668,
+        "rating": 4.5,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Tom Cavallo's Restaurant",
+        "address": "40 Genesee St, New Hartford, NY 13413, United States",
+        "distance": 4.251210190543912,
+        "lat": 43.073549,
+        "lng": -75.288236,
+        "rating": 4.1,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "One Genny",
+        "address": "1 Genesee St, New Hartford, NY 13413, United States",
+        "distance": 4.252985923381592,
+        "lat": 43.0738117,
+        "lng": -75.28637359999999,
+        "rating": 4.4,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Creekside Cafe",
+        "address": "3888 Oneida St, New Hartford, NY 13413, United States",
+        "distance": 4.271460059861731,
+        "lat": 43.0509,
+        "lng": -75.2721279,
+        "rating": 4.2,
+        "priceLvl": 1
+    },
+    {
+        "restaurantName": "Salt & Char",
+        "address": "353 Broadway, Saratoga Springs, NY 12866, United States",
+        "distance": 5.73109728648785,
+        "lat": 43.080416,
+        "lng": -73.7861082,
+        "rating": 4.4
+    },
+    {
+        "restaurantName": "Joey@307 Restaurant",
+        "address": "307 Mohawk St, Utica, NY 13501, United States",
+        "distance": 4.316413290233998,
+        "lat": 43.0994988,
+        "lng": -75.21679759999999,
+        "rating": 4.8
+    },
+    {
+        "restaurantName": "black & blue steak and crab, Albany NY",
+        "address": "1470 Western Ave, Albany, NY 12203, United States",
+        "distance": 5.750483461238565,
+        "lat": 42.6808222,
+        "lng": -73.8385972,
+        "rating": 4.4
+    },
+    {
+        "restaurantName": "LongHorn Steakhouse",
+        "address": "7720 NY-96, Victor, NY 14564, United States",
+        "distance": 2.20218359101068,
+        "lat": 43.0248348,
+        "lng": -77.437699,
+        "rating": 4.3,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Morton's The Steakhouse",
+        "address": "4 Avenue Rd, Toronto, ON M5R 2E8, Canada",
+        "distance": 0.23993837746554808,
+        "lat": 43.6692689,
+        "lng": -79.3950356,
+        "rating": 4.5,
+        "priceLvl": 4
+    },
+    {
+        "restaurantName": "Limp Lizard BBQ & Catering",
+        "address": "201 1st St, Liverpool, NY 13088, United States",
+        "distance": 3.3495551712231557,
+        "lat": 43.101257,
+        "lng": -76.205449,
+        "rating": 4.3,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Day & Night Firewood Steakhouse",
+        "address": "2 Fenton Rd, Markham, ON L3R 7B3, Canada",
+        "distance": 0.18114267374199672,
+        "lat": 43.8276617,
+        "lng": -79.2924472,
+        "rating": 4.3,
+        "priceLvl": 2
+    },
+    {
+        "restaurantName": "Black Angus Steakhouse",
+        "address": "3250 Bloor St W Unit 126, Etobicoke, ON M8X 2X4, Canada",
+        "distance": 0.2627420550605687,
+        "lat": 43.6456374,
+        "lng": -79.5210644,
+        "rating": 4,
+        "priceLvl": 3
+    },
+    {
+        "restaurantName": "Texas de Brazil",
+        "address": "22 Celebration Dr, Rochester, NY 14620, United States",
+        "distance": 1.9967404633461487,
+        "lat": 43.123352,
+        "lng": -77.618999,
+        "rating": 4.6,
+        "priceLvl": 3
+    }
+]
