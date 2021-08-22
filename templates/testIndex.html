@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
     <script text/javascript>
         let map;
-        var query = "Ribeye steak";
-        var searchRadius = 5000;
+        var query = "";
+        var searchRadius = 1000;
         var current_location;
         var markers = [];
         var orderedPlaces = [{restaurantName: "place 1", prices: 13.99}, {restaurantName: "place 2", prices: 10.99}];
@@ -25,6 +25,7 @@
             });
 
             setCurrentLocation();
+            addToList();
         }
 
         function getCurrentLocation() {
@@ -46,8 +47,6 @@
                 //   title: "Current Location",
                 //   animation: google.maps.Animation.DROP
                 // });
-
-                search(query, current_location);
             });
         }
 
@@ -119,23 +118,25 @@
                     .then(function (response) {
                         return response.json();
                     })
-                    .then(function (json) {
+                    .then(function (json){
                       var value = []; 
                       var weight = []; 
                       for (var i = 0; i < json.length; i++){
                         var display = json[i]["restaurantName"] + " ";
                         var prices = json[i]["prices"];
                         var averagePrice = 0;
-                        for (var j = 0; j < prices.length; j++){
-                          averagePrice += prices[j]["price"];
-                          display += prices[j]["name"] + ": $" + prices[j]["price"] + " ";
+                        if (prices){
+                            for (var j = 0; j < prices.length; j++){
+                              averagePrice += prices[j]["price"];
+                              display += prices[j]["name"] + ": $" + prices[j]["price"] + " ";
 
-                        }
-                        if (prices.length == 0){
-                          display += " price level: " + json[i]["priceLvl"]; 
-                        }
-                        else {
-                          averagePrice = averagePrice/prices.length; 
+                            }
+                            if (prices.length == 0){
+                              display += " price level: " + json[i]["priceLvl"]; 
+                            }
+                            else {
+                              averagePrice = averagePrice/prices.length; 
+                            }
                         }
                         
                         popularTimes = json[i]["popularTimes"]; 
@@ -146,12 +147,12 @@
                         var occupancyWeight = 0; 
                         var ratingWeight = 0; 
 
-                        for (var i = 0; i < preferences.length; i++){
-                          if (preferences[i] == "distance"){ 
+                        for (var k = 0; k < preferences.length; k++){
+                          if (preferences[k] == "distance"){ 
                             distanceWeight = 1; 
-                          } else if (preferences[i] == "price"){
+                          } else if (preferences[k] == "price"){
                             priceWeight = 1;
-                          } else if (preferences[i] == "occupancy"){
+                          } else if (preferences[k] == "occupancy"){
                             occupancyWeight = 1; 
                           } else { 
                             ratingWeight = 1; 
@@ -181,12 +182,12 @@
                         }
                       }
 
-
+                      addToList();
                     });
             }
         }
 
-        function searchAgain(loca, currentLoca){
+        function searchAgain(){
             setMapOnAll(null);
             markers = [];
 
@@ -198,7 +199,8 @@
             }
             orderedPlaces = [];
 
-            search(document.getElementById('search').value, current_location);
+            query = document.getElementById('search').value;
+            search(query, current_location);
         }
 
         function setMapOnAll(map) {
