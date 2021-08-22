@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template
+import json
 app = Flask(__name__)
 
 @app.route('/hello', methods=['GET', 'POST'])
@@ -7,7 +8,12 @@ def hello():
     # POST request
     if request.method == 'POST':
         print('Incoming..')
-        print(request.get_json()[0])  # parse as JSON
+
+        # asjson = json.dumps(request.get_json())
+        asjson = request.get_json()[1]
+
+        print(type(asjson))  # parse as JSON
+        print(asjson)
         return 'OK', 200
 
     # GET request

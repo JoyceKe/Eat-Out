@@ -64,6 +64,9 @@
 
         function callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
+                var resultToPost = [];
+                resultToPost[0] = query;
+
                 for (var i = 0; i < results.length; i++) {
                     var current_location = getCurrentLocation();
                     var address = results[i].formatted_address;
@@ -75,67 +78,41 @@
                     var restaurant = results[i].name;
                     var price_level = results[i].price_level;
                     var ratings = results[i].rating;
+
+                    var dict = {};
+                    dict['restaurantName'] = restaurant;
+                    dict['address'] = address;
+                    dict['distance'] = distance;
+                    dict['lat'] = lat;
+                    dict['lng'] = lng;
+                    dict['rating'] = ratings;
+                    dict['priceLvl'] = price_level;
+                    resultToPost[i+1] = dict;
                 }
-            }
-        }
 
-        // function post_callback(results, status) {
-        //     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        //     // POST
-        //     fetch('http://127.0.0.1:5000/hello', {
+                fetch('http://127.0.0.1:5000/hello', {
 
-        //         // Declare what type of data we're sending
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
+                    // Declare what type of data we're sending
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
 
-        //         // Specify the method
-        //         method: 'POST',
+                    // Specify the method
+                    method: 'POST',
 
-        //         // A JSON payload
-        //         body: JSON.stringify(results)
-        //     })
-        //         .then(function (response) {
-        //             return response.text();
-        //         })
-        //         .then(function (text) {
-
-        //             console.log('POST response: ');
-
-        //             // Should be 'OK' if everything was successful
-        //             console.log(text);
-        //         });
-
-        //     }
-        // }
-
-        function post_callback(results, status) {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-            // POST
-            fetch('http://127.0.0.1:5000/hello', {
-
-                // Declare what type of data we're sending
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-
-                // Specify the method
-                method: 'POST',
-
-                // A JSON payload
-                body: JSON.stringify(results)
-            })
-                .then(function (response) {
-                    return response.text();
+                    // A JSON payload
+                    body: JSON.stringify(resultToPost)
                 })
-                .then(function (text) {
+                    .then(function (response) {
+                        return response.text();
+                    })
+                    .then(function (text) {
 
-                    console.log('POST response: ');
+                        console.log('POST response: ');
 
-                    // Should be 'OK' if everything was successful
-                    console.log(text);
-                });
-
+                        // Should be 'OK' if everything was successful
+                        console.log(text);
+                    });
             }
         }
 
