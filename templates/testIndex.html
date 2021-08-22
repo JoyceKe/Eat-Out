@@ -13,9 +13,9 @@
         var searchRadius = 5000;
         var current_location;
         var markers = [];
-        var orderedPlaces = [];
+        var orderedPlaces = [{restaurantName: "place 1", prices: 13.99}, {restaurantName: "place 2", prices: 10.99}];
         var preferences = JSON.parse(sessionStorage.getItem("options"));
-        console.log(typeof preferences);
+
         function initMap() {
             var nothardcoded = new google.maps.LatLng(43.2609,-74.9192);
 
@@ -101,6 +101,8 @@
                     resultToPost[i+1] = dict;
                 }
 
+                addToList();
+
                 fetch('http://127.0.0.1:5000/hello', {
 
                     // Declare what type of data we're sending
@@ -184,18 +186,35 @@
             }
         }
 
-        function searchAgain(){
+        function searchAgain(loca, currentLoca){
+            setMapOnAll(null);
+            markers = [];
 
+            orderedPlaces = [];
+            for(var i = 0; i < orderedPlaces.length; i++){
+                var candidate = orderedPlaces[i];
+                var item = document.getElementById(candidate);
+                ul.removeChild(item);
+            }
+
+            search(document.getElementById('search').value, current_location);
         }
 
-        function addToList(places){
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
+        function addToList(){
             var ul = document.getElementById("dylist");
-            for (var i = 0; i < places.length; i++) {
-              var candidate = places[i].name;
+            for (var i = 0; i < orderedPlaces.length; i++) {
+              var candidate = orderedPlaces[i].restaurantName;
               var li = document.createElement("li");
               li.setAttribute('id',candidate);
               li.appendChild(document.createTextNode(candidate));
-              // li.appendChild(document.createTextNode(" Price: $"));
+              li.appendChild(document.createElement("br"));
+              li.appendChild(document.createTextNode(" Price: $" + orderedPlaces[i].prices));
               ul.appendChild(li);
             }
         }
@@ -208,7 +227,7 @@
         <img src="{{ url_for('static', filename='img/eat_out_very_small_white.png') }}" alt="">
       </div>
     <div class="list">
-    <ul id='dylist' style="list-style: none;"></ul>
+    <ul id='dylist' style="list-style: none;padding-left: 20px;"></ul>
     </div>
     <div class="topnav">
       <div class="search-container" class="img-responsive">
