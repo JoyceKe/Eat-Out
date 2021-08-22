@@ -21,7 +21,11 @@ def hello():
         message = {'greeting':'Hello from Flask!'}
         return jsonify(message)  # serialize and use JSON headers
 
-@app.route('/test')
-def test_page():
+@app.route('/eatout')
+def main_page():
     # look inside `templates` and serve `index.html`
-    return render_template('testIndex.html')
+    return render_template('home.html')
+
+@app.route('/results')
+def results_page():
+	return render_template('testIndex.html')

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"> </script>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EatOut | Home </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+        
+        <!-- Update these with your own fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        
+    </head>
+    <body>
+       
+        <header>
+            <div class="logo"> 
+                <img src="{{ url_for('static', filename='img/eat_out_very_small_white.png') }}" alt="">
+
+            </div>
+        </header>
+        <!-- Introduction -->
+        <section class="intro" id="home">
+            <h1 class="section__title section__title--intro">
+               Welcome to <strong>EatOut!</strong>
+            </h1>
+            
+            <p class="section__subtitle section__subtitle--intro">Helping you decide dinner <strong>safely</strong>...</p>
+           
+        </section>
+        <p class="blocktext">Select your preferences below!</p>
+        <section class="section__dropdown">
+        
+            <select data-placeholder="Type or select your preference" multiple class="chosen-select" name="test">
+              <option value=""></option>
+              <option>Distance</option>
+              <option>Price</option>
+              <option>Occupancy</option>
+              <option>Rating</option>
+              <option>Parking Space</option>
+            </select>
+
+            <a href="results" id="map wrapper">
+                <input type="submit">
+            </a>
+            
+
+        </section>
+     
+    </body>
+    <script>
+        $(".chosen-select").chosen({
+        no_results_text: "Oops, nothing found!"
+    })
+    </script>
+</html>
+

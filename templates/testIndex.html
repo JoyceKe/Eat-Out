@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Map</title>
+    <title>Eat Out</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <style type="text/css">
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    #map {
-      height: 100%;
-    }
-
-    /* Optional: Makes the sample page fill the window. */
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    </style>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
     <script text/javascript>
         let map;
         var query = "Ribeye steak";
@@ -105,6 +94,8 @@
                     dict['lng'] = lng;
                     dict['rating'] = ratings;
                     dict['priceLvl'] = price_level;
+                    dict['prices'] = [];
+                    dict['popularTimes'] = 0;
                     resultToPost[i+1] = dict;
                 }
 
@@ -134,40 +125,37 @@
             }
         }
 
-        function get_request_string(results) {
-    
-            // GET is the default method, so we don't need to set it
-            fetch('http://127.0.0.1:5000/hello')
-                .then(function (response) {
-                    return response.text();
-                })
-                .then(function (text) {
-
-                    // Print the greeting as text
-                    console.log('GET response text:');
-                    console.log(text);
-                });
-        }
-
-        function get_request_json(results) {
-            // Send the same request
-            fetch('http://127.0.0.1:5000/hello')
-                .then(function (response) {
-
-                    // But parse it as JSON this time
-                    return response.json();
-                })
-                .then(function (json) {
-
-                    // Do anything with it!
-                    console.log('GET response as JSON:');
-                    console.log(json);
-                });
+        function addToList(places){
+            var ul = document.getElementById("dylist");
+            for (var i = 0; i < places.length; i++) {
+              var candidate = places[i].name;
+              var li = document.createElement("li");
+              li.setAttribute('id',candidate);
+              li.appendChild(document.createTextNode(candidate));
+              // li.appendChild(document.createTextNode(" Price: $"));
+              ul.appendChild(li);
+            }
         }
     </script>
   </head>
   <body>
     <div id="map"></div>
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+      <div class="w3-display-middle">
+        <img src="{{ url_for('static', filename='img/eat_out_very_small_white.png') }}" alt="">
+      </div>
+    <div class="list">
+    <ul id='dylist' style="list-style: none;"></ul>
+    </div>
+    <div class="topnav">
+      <div class="search-container" class="img-responsive">
+    <form onsubmit="searchAgain()" action="javascript:void(0)">
+      <input type="text" placeholder="Search.." id='search' onkeydown = "if (event.keyCode == 13){
+                        document.getElementById('fa fa-search').click()}" >
+      <button type='button' id='btn' class='fa fa-search' onclick="searchAgain()"></button>
+    </form>
+      </div>
+    </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
