@@ -23,6 +23,7 @@
         var query = "Ribeye steak";
         var searchRadius = 5000;
         var current_location;
+        var markers = [];
 
         function initMap() {
             var nothardcoded = new google.maps.LatLng(43.2609,-74.9192);
@@ -33,7 +34,6 @@
             });
 
             setCurrentLocation();
-            search(query, map.center);
         }
 
         function getCurrentLocation() {
@@ -48,6 +48,15 @@
                 };
                 map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
                 current_location = pos;
+
+                new google.maps.Marker({
+                  position: current_location,
+                  map: map,
+                  title: "Current Location",
+                  animation: google.maps.Animation.DROP
+                });
+
+                search(query, current_location);
             });
         }
 
@@ -68,6 +77,15 @@
                 resultToPost[0] = query;
 
                 for (var i = 0; i < results.length; i++) {
+                    var marker = new google.maps.Marker({
+                        position: results[i].geometry.location,
+                        map: map,
+                        animation: google.maps.Animation.DROP,
+                        title: results[i].name,
+                    });
+                    marker.setMap(map);
+                    markers.push(marker);
+
                     var current_location = getCurrentLocation();
                     var address = results[i].formatted_address;
                     var location = results[i].geometry.location;
