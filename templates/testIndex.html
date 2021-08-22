@@ -13,6 +13,7 @@
         var searchRadius = 5000;
         var current_location;
         var markers = [];
+        var orderedPlaces = [];
         var preferences = JSON.parse(sessionStorage.getItem("options"));
         console.log(typeof preferences);
         function initMap() {
@@ -39,12 +40,12 @@
                 map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
                 current_location = pos;
 
-                new google.maps.Marker({
-                  position: current_location,
-                  map: map,
-                  title: "Current Location",
-                  animation: google.maps.Animation.DROP
-                });
+                // new google.maps.Marker({
+                //   position: current_location,
+                //   map: map,
+                //   title: "Current Location",
+                //   animation: google.maps.Animation.DROP
+                // });
 
                 search(query, current_location);
             });
@@ -122,6 +123,10 @@
 
                     });
             }
+        }
+
+        function searchAgain(){
+
         }
 
         function addToList(places){
