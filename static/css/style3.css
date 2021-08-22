@@ -96,7 +96,14 @@
         color: black;
         font-size: 18px
         font-weight: bold;
-        overflow: auto;;
+        overflow: auto;
+      }
+
+      .list-el{
+        font-family: var(--ff-secondary);
+        font-size: var(--fs-body);
+        margin-left: auto;
+        margin-right: auto;
       }
 
       li{

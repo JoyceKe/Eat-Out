@@ -131,12 +131,13 @@
             setMapOnAll(null);
             markers = [];
 
-            orderedPlaces = [];
+            var ul = document.getElementById("dylist");
             for(var i = 0; i < orderedPlaces.length; i++){
-                var candidate = orderedPlaces[i];
+                var candidate = orderedPlaces[i].restaurantName;
                 var item = document.getElementById(candidate);
                 ul.removeChild(item);
             }
+            orderedPlaces = [];
 
             search(document.getElementById('search').value, current_location);
         }
@@ -153,6 +154,7 @@
               var candidate = orderedPlaces[i].restaurantName;
               var li = document.createElement("li");
               li.setAttribute('id',candidate);
+              li.setAttribute('class', "list-el");
               li.appendChild(document.createTextNode(candidate));
               li.appendChild(document.createElement("br"));
               li.appendChild(document.createTextNode(" Price: $" + orderedPlaces[i].prices));
