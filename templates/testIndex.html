@@ -118,8 +118,67 @@
                         return response.json();
                     })
                     .then(function (json) {
+                      var value = []; 
+                      var weight = []; 
+                      for (var i = 0; i < json.length; i++){
+                        var display = json[i]["restaurantName"] + " ";
+                        var prices = json[i]["prices"];
+                        var averagePrice = 0;
+                        for (var j = 0; j < prices.length; j++){
+                          averagePrice += prices[j]["price"];
+                          display += prices[j]["name"] + ": $" + prices[j]["price"] + " ";
 
-                        // logic for sorting
+                        }
+                        if (prices.length == 0){
+                          display += " price level: " + json[i]["priceLvl"]; 
+                        }
+                        else {
+                          averagePrice = averagePrice/prices.length; 
+                        }
+                        
+                        popularTimes = json[i]["popularTimes"]; 
+                        display += "current occupancy: " + popularTimes + "% "; 
+                        var rating = -1;
+                        var distanceWeight = 0; 
+                        var priceWeight = 0; 
+                        var occupancyWeight = 0; 
+                        var ratingWeight = 0; 
+
+                        for (var i = 0; i < preferences.length; i++){
+                          if (preferences[i] == "distance"){ 
+                            distanceWeight = 1; 
+                          } else if (preferences[i] == "price"){
+                            priceWeight = 1;
+                          } else if (preferences[i] == "occupancy"){
+                            occupancyWeight = 1; 
+                          } else { 
+                            ratingWeight = 1; 
+                          }
+                        }
+
+                        if (averagePrice == 0){
+                          rating = (20*parseFloat(json[i]["priceLvl"]))*priceWeight + parseFloat(json[i]["distance"])*distanceWeight + (1-parseInt(json[i]["rating"]))*ratingWeight + parseFloat(popularTimes)*occupancyWeight;
+                        }
+                        else {
+                          rating = (averagePrice)*priceWeight + parseFloat(json[i]["distance"])*distanceWeight + (1-parseInt(json[i]["rating"]))*ratingWeight + parseFloat(popularTimes)*occupancyWeight;
+                        }
+
+                        value[i] = display; 
+                        weight[i] = rating; 
+                        
+                      }  
+
+                      var originalWeight = weight; 
+                      weight.sort((a, b) => (b - a));
+                      for (var i = 0; i < weight; i ++){
+                        for (var j = 0; j < weight; j++){
+                          if (originalWeight[j] == weight[i]){
+                            orderedPlaces[i] = value[i]; 
+                            break; 
+                          } 
+                        }
+                      }
+
 
                     });
             }
