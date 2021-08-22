@@ -1,0 +1,14 @@
+[
+    "Ribeye steak",
+    {
+        "restaurantName": "Texas Roadhouse",
+        "address": "760 Coastal Grand Circle, Myrtle Beach, SC 29577, United States",
+        "distance": 4.217682578844316,
+        "lat": 43.084637,
+        "lng": -75.32021999999999,
+        "rating": 4.6,
+        "priceLvl": 2,
+	"prices": [], 
+	"popularTimes" : 0
+    }
+]
