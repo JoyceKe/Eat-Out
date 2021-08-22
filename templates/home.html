@@ -38,17 +38,17 @@
         <p class="blocktext">Select your preferences below!</p>
         <section class="section__dropdown">
         
-            <select data-placeholder="Type or select your preference" multiple class="chosen-select" name="test">
+            <select data-placeholder="Type or select your preference" multiple="multiple" class="chosen-select" name="test" id="preferences">
               <option value=""></option>
-              <option>Distance</option>
-              <option>Price</option>
-              <option>Occupancy</option>
-              <option>Rating</option>
-              <option>Parking Space</option>
+              <option value="distance">Distance</option>
+              <option value="price">Price</option>
+              <option value="occupancy">Occupancy</option>
+              <option value="rating">Rating</option>
+              <option value="parking space">Parking Space</option>
             </select>
 
             <a href="results" id="map wrapper">
-                <input type="submit">
+                <input id="submitButton" type="submit">
             </a>
             
 
@@ -56,6 +56,19 @@
      
     </body>
     <script>
+
+        document.getElementById('submitButton').onclick = function() {
+            var selected = [];
+            for (var option of document.getElementById('preferences').options)
+            {
+                if (option.selected) {
+                    selected.push(option.value);
+                }
+            }
+            window.sessionStorage.setItem("options", JSON.stringify(selected));
+        }
+
+
         $(".chosen-select").chosen({
         no_results_text: "Oops, nothing found!"
     })

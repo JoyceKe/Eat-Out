@@ -13,7 +13,8 @@
         var searchRadius = 5000;
         var current_location;
         var markers = [];
-
+        var preferences = JSON.parse(sessionStorage.getItem("options"));
+        console.log(typeof preferences);
         function initMap() {
             var nothardcoded = new google.maps.LatLng(43.2609,-74.9192);
 
@@ -113,14 +114,12 @@
                     body: JSON.stringify(resultToPost)
                 })
                     .then(function (response) {
-                        return response.text();
+                        return response.json();
                     })
-                    .then(function (text) {
+                    .then(function (json) {
 
-                        console.log('POST response: ');
+                        // logic for sorting
 
-                        // Should be 'OK' if everything was successful
-                        console.log(text);
                     });
             }
         }
