@@ -70,17 +70,14 @@
         function callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
-                    if(!places.includes(results[i])){
-                        var address = results[i].formatted_address;
-                        var current_location = getCurrentLocation();
-                        var location = results[i].geometry.location;
-                        var distance = Math.sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
-                                            + (current_location.lat-location.lat) * (current_location.lat-location.lat))
-                        var restaurant = results[i].name;
-                        var price_level = results[i].price_level;
-                        var ratings = results[i].rating;
-                    };
-            
+                    var address = results[i].formatted_address;
+                    var current_location = getCurrentLocation();
+                    var location = results[i].geometry.location;
+                    var distance = Math.sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
+                                        + (current_location.lat-location.lat) * (current_location.lat-location.lat))
+                    var restaurant = results[i].name;
+                    var price_level = results[i].price_level;
+                    var ratings = results[i].rating;
                 }
             }
         }
