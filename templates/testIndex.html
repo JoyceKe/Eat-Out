@@ -66,11 +66,10 @@
             service.textSearch(request, callback);
         }
 
-        function callback(results, status) {
+        async function callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
-                    var current_location = getCurrentLocation();
-                    while(current_location == null){}
+                    var current_location = await getCurrentLocation();
                     var address = results[i].formatted_address;
                     var location = results[i].geometry.location;
                     var distance = Math.sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
