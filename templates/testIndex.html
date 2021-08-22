@@ -21,8 +21,6 @@
     <script text/javascript>
         let map;
         var query = "Ribeye steak";
-        var searchRadius = 5000;
-        var location_results;
 
         function initMap() {
             var nothardcoded = new google.maps.LatLng(43.2609,-74.9192);
@@ -70,8 +68,10 @@
         function callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
-                    var address = results[i].formatted_address;
                     var current_location = getCurrentLocation();
+                    while(current_location == null){}
+                    var address = results[i].formatted_address;
+                    
                     var location = results[i].geometry.location;
                     var distance = Math.sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
                                         + (current_location.lat - location.lat) * (current_location.lat - location.lat))
