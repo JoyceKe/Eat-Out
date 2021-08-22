@@ -35,14 +35,15 @@
             search(query, map.center);
         }
 
-        function getCurrentLocation(location) {
+        function getCurrentLocation() {
             navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
+                pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-                location = pos;               
+                return pos;      
             });
+            
         }
 
         function setCurrentLocation(pos) {
@@ -69,8 +70,7 @@
         function callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
-                    var current_location;
-                    getCurrentLocation(current_location);
+                    var current_location = getCurrentLocation();
                     var address = results[i].formatted_address;
                     var location = results[i].geometry.location;
                     var distance = Math.sqrt((current_location.lng - location.lng) * (current_location.lng - location.lng)
