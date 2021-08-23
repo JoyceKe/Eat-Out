@@ -130,7 +130,7 @@ def getPlaceUrl(name, address):
         url = url.get_attribute("href")
         
         print (url)
-        if ((("google" in url) == False) and (("webcache" in url) == False)): 
+        if ((("google" in url) == False) and (("webcache" in url) == False) and ("https://www.ubereats.com/" in url)): 
             print ('string ', url)
             out_file.write(str(url) + "\n")
 
@@ -163,7 +163,6 @@ def getMenu(place):
 
 def getPrices(place): #place
     global food 
-    food = 'ribeye'
     menu = place.menu
     #with open("./Texas Roadhousedata.json") as f:
      #   menu = json.load(f)
